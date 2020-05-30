@@ -50,4 +50,107 @@ void main()
 	
 }
 
+void print_array(unsigned char array[], int n)
+ {
+ 	int i;
+ 	for( i=0; i<n; i++)
+ 	{
+ 		PRINTF("%d\t", array[i]);
+ 	}
+ }
+ 
+ float find_median(unsigned char array[], int n)
+ {
+ 	unsigned char newa[40];
+	 int k, i, j;
+ 	unsigned char temp=0;
+ 	for(k=0; k<n; k++)
+ 	{
+ 		newa[k]=array[k];
+ 	}
+ 	for( i=0; i<n; i++)
+ 	{
+ 		for(j=0; j<n-1; j++)
+ 		{
+ 			if(newa[j]>newa[j+1])
+ 			{
+ 				temp=newa[j];
+ 				newa[j]=newa[j+1];
+ 				newa[j+1]=temp;
+ 			}
+ 		}
+ 	}
+ 	float median=0;
+ 	if(n%2==0)
+ 		median= (newa[(n-1)/2] + newa[(n/2)])/2.0;
+ 	else
+ 		median= newa[n/2];
+ 		
+ 	return median;
+ }
+ 
+ float find_mean(unsigned char array[], int n)
+ {
+ 	unsigned char sum=0;
+	int i;
+ 	for(i=0; i<n; i++)
+ 	{
+ 		sum=sum+array[i];
+ 	}
+ 	float mean;
+ 	mean=sum/n;
+ 	
+ 	return mean;
+ }
+ 
+ unsigned char find_maximum(unsigned char array[], int n)
+ {
+ 	unsigned char max=array[0];
+ 	int i;
+ 	for( i=0; i<n; i++)
+ 	{
+ 		if(max<=array[i])
+ 			max=array[i];
+ 	}
+ 	
+ 	return max;
+ }
 
+unsigned char find_minimum(unsigned char array[], int n)
+ {
+ 	int i;
+ 	unsigned char min=array[0];
+ 	for( i=0; i<n; i++)
+ 	{
+ 		if(min>=array[i])
+ 			min=array[i];
+ 	}
+ 	
+ 	return min;
+ }
+ 
+ void sort_array(unsigned char array[], int n)
+  {
+  	unsigned char temp;
+	int i, j;
+  	for( i=0; i<n; i++)
+  	{
+  		for(j=i+1; j<n; j++)
+  		{
+  			if(array[i]<array[j])
+  			{
+  				temp=array[i];
+  				array[i]=array[j];
+  				array[j]=temp;
+  			}
+  		}
+  	}
+  }
+  
+void print_statistics(unsigned char array[], int n, unsigned char max, unsigned char min, float mean, float median)
+{
+	PRINTF("Maximum of array is = %d\n", max);
+	PRINTF("Minimum of array is = %d\n", min);
+	PRINTF("Mean of array is = %f\n", mean);
+	PRINTF("Median of array is = %f\n", median);
+}  
